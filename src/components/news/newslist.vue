@@ -22,7 +22,7 @@
 </template>
 <script>
     import {Toast} from 'mint-ui';
-
+    import common from '../../kits/common.js'
     export default{
         data(){
              return {
@@ -34,7 +34,7 @@
         },
         methods:{
             getlist:function(){
-                let url = 'http://webhm.top:8899/api/getnewslist';
+                let url = common.apidomain+'/api/getnewslist';
                 this.$http.get(url).then(res=>{
                     if(res.body.status !=0){
                         Toast(res.body.message);

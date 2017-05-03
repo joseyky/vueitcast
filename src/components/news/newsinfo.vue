@@ -5,10 +5,16 @@
             <p>{{info.add_time | datefmt('YYYY-MM-DD')}} {{info.click}}次浏览</p>
         </div>
         <div id="content" v-html="info.content"></div>
+        <comment :id="id"></comment>
     </div>
 </template>
 <script>
+    import common from '../../kits/common.js';
+    import comment from '../subcom/comment.vue';
     export default{
+        components:{
+          comment
+        },
         data(){
              return{
                 id:0,
@@ -21,7 +27,7 @@
         },
     methods:{
         getinfo:function(){
-            let url = 'http://webhm.top:8899/api/getnew/'+this.id;
+            let url = common.apidomain+'/api/getnew/'+this.id;
             this.$http.get(url).then(res=>{
                 if(res.body.status!=0){
                     alert(res.body.message);
